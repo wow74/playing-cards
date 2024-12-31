@@ -42,36 +42,26 @@ public class DoubleUp {
 
     Scanner scanner = new Scanner(System.in);
     while (true) {
-      System.out.println("手札:" + card1.suit() + card1.StringNum());
+      System.out.println("手札:" + card1.suit() + " " + card1.StringNum());
       System.out.println("High(h) or Low(l) ? >>>");
       final String input = scanner.next();
 
       if (!Define.DOUBLE_UP_HIGH.equals(input) && !Define.DOUBLE_UP_LOW.equals(input)) continue;
 
-      Cards card2 = draw();
-      System.out.println("ドロー:" + card2.suit() + card2.StringNum());
+      final Cards card2 = draw();
+      System.out.println("ドロー:" + card2.suit() + " " + card2.StringNum());
 
-      final int num1 = convert(card1);
-      final int num2 = convert(card2);
+      final int result = Integer.compare(convert(card1), convert(card2));
+      System.out.println(switch (result) {
+        case 1 -> Define.DOUBLE_UP_HIGH.equals(input) ? "負け" : "勝ち"; // a > b
+        case -1 -> Define.DOUBLE_UP_HIGH.equals(input) ? "勝ち" : "負け"; // a < b
+        default -> "引き分け"; // a == b (0)
+      });
 
-      if (Define.DOUBLE_UP_HIGH.equals(input)) {
-        if (num1 < num2) {
-          System.out.println("勝ち");
-        } else if (num1 > num2) {
-          System.out.println("負け");
-        } else {
-          System.out.println("引き分け");
-        }
-      } else {
-        if (num1 < num2) {
-          System.out.println("負け");
-        } else if (num1 > num2) {
-          System.out.println("勝ち");
-        } else {
-          System.out.println("引き分け");
-        }
-      }
       card1 = card2;
+
+      System.out.println("ゲーム続行(y/n) >>>");
+      if (scanner.next().equals(Define.DEFINE_NO)) break;
     }
   }
 }

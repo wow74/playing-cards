@@ -9,4 +9,7 @@ public class Define {
 
   public static final String DOUBLE_UP_HIGH = "h";
   public static final String DOUBLE_UP_LOW = "l";
+
+  public static final String DEFINE_YES = "y";
+  public static final String DEFINE_NO = "n";
 }
