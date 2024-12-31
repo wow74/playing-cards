@@ -14,7 +14,7 @@ public enum CardEnum {
   JOKER1("ジョーカー", Define.CARD_COLOR_BLACK),
   JOKER2("ジョーカー", Define.CARD_COLOR_RED);
 
-  private final String type;
+  private final String suit;
   private final String color;
 
 }
